@@ -3,11 +3,54 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title><%= message %></title>
+    <title>Szabadság</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <p><%= message %></p>
+    <main class="justify-content-center container">
+        <form action="/bekuldve" method="post" style="width: 40rem; ">
+            <div class="form-group" style="width: 35%;">
+                <label for="nev">Teljes név</label>
+                <input type="text" class="form-control" name="nev" placeholder="Lakatos Lajos" value="<%= data.nev %>">
+            </div>  
+            
+            <div class="row">
+                <div class="form-group col">
+                    <label for="kezdDatum">Szabadság kezdetének dátuma</label>
+                    <input type="text"  class="form-control" placeholder="XXXX-XX-XX" name="kezdDatum" value="<%= data.kezdDatum %>">
+                </div>
+
+                <div class="form-group col">
+                    <label for="vegDatum">Szabadság végének dátuma</label>
+                    <input type="text" class="form-control" placeholder="XXXX-XX-XX" name="vegDatum" value="<%= data.vegDatum %>">
+                </div>
+            </div><br>
+
+            <div class="form-group">
+                <label for="fizetett" class="form-check-label">Fizetett szabadság?</label>
+                <input type="checkbox" class="form-check-input" name="fizetett"><br>
+            </div><br>
+            
+            <div class="form-group">
+                <label for="azon">Alkalmazott azonosító</label>
+                <input type="text" class="form-control" placeholder="BBB-111" style="width: 35%;" name="azon" value="<%= data.azon %>"> 
+            </div>
+            
+            <div class="form-group">
+                <label for="indoklas">Indokolja meg!</label>
+                <textarea type="text" style="width: 35%;" class="form-control" name="indoklas" rows="5"><%= data.indoklas %></textarea>
+            </div><br>
+            <ul style="list-style: none;">
+                <% errors.forEach(function(error) { %>
+                  <li class="alert alert-danger"><%= error %></li>
+                <% }); %>
+            </ul><br>
+
+            <input type="submit" value="Küldés" class="btn btn-outline-success">
+        </form>
+    </main>
 </body>
 </html>
